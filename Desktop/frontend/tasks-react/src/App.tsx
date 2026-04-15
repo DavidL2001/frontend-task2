@@ -1,33 +1,35 @@
-import { useState } from "react";
-import Counter from "./components/Counter";
-import UserCard from "./components/UserCard";
+import { useState, useEffect } from "react";
+import ProfileCard from "./components/ProfileCard";
+import Temperature from "./components/Temperature";
 
 function App() {
-  const [showUser, setShowUser] = useState<boolean>(true);
+  const [showProfile, setShowProfile] = useState<boolean>(true);
 
-  const toggleUserCard = () => {
-    
-    setShowUser(!showUser);
+  useEffect(() => {
+    console.log("App has loaded!");
+  }, []);
+
+  const toggleProfile = () => {
+    setShowProfile(!showProfile);
   };
 
   return (
     <div>
-      <h1>My App</h1>
+      <h1>My Profile App</h1>
 
-      <button onClick={toggleUserCard}>
-        {showUser ? "Hide User" : "Show User"}
-
+      <button onClick={toggleProfile}>
+        {showProfile ? "Hide Profile" : "Show Profile"}
       </button>
 
-      {showUser && (
-        <UserCard
-          name="David"
-          age={24}
-          email="david@example.com"
+      {showProfile && (
+        <ProfileCard
+          name="Sara Nilsson"
+          occupation="FrontendDeveloper"
+          city="Malmö"
         />
       )}
 
-      <Counter />
+      <Temperature />
     </div>
   );
 }
